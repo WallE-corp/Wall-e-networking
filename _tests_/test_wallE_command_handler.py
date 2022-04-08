@@ -1,15 +1,26 @@
 from unittest import TestCase
 from wallE_command_handler import WallECommandHandler
 
+
 class TestWallECommandHandler(TestCase):
   def setUp(self):
     self.cmdh = WallECommandHandler()
 
   def test_handle_message(self):
-    self.fail()
+    data_string = '{"type":4,"data":{"movement":"left","action":"start"}}'
+    result = self.cmdh.handle_message(data_string)
+    self.assertTrue(result)
 
   def test_handle_movement_command(self):
-    self.fail()
+    self.cmdh.movement_commands = {
+      'left': lambda action: print(action)
+    }
+    data = {
+      'movement': 'left',
+      'action': 'start'
+    }
+    result = self.cmdh.handle_movement_command(data)
+    self.assertTrue(result)
 
   def test_move(self):
     @self.cmdh.move('left')

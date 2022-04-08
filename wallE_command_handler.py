@@ -17,15 +17,25 @@ class WallECommandHandler(object):
     self.sio_server.run()
 
   def handle_message(self, message):
-    message_data = json.loads(message)
-    print(message_data)
-    command = self.command_map.get(message_data['type'])
-    command(message_data['data'])
+    try:
+      message_data = json.loads(message)
+      command = self.command_map.get(message_data['type'])
+      command(message_data['data'])
+      return True
+    except Exception as e:
+      print('Could not execute handle_message.', e)
+      return False
+
 
   def handle_movement_command(self, data):
-    movement = data['movement']
-    movement_command = self.movement_commands.get(movement)
-    movement_command(data['action'])
+    try:
+      movement = data['movement']
+      movement_command = self.movement_commands.get(movement)
+      movement_command(data['action'])
+      return True
+    except Exception as e:
+      print('Could not execute handle_movement_command.', e)
+      return False
 
   # ======= Decorator functions ===================
   def move(self, movement):
