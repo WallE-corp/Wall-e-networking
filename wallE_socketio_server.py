@@ -9,7 +9,6 @@ class SocketIOServer(socketio.AsyncNamespace):
     self.sio.register_namespace(self)
     self.app = web.Application()
     self.sio.attach(self.app)
-
     self.delegate = None
 
   def run(self):

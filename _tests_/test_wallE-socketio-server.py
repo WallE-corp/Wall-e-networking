@@ -17,7 +17,10 @@ class SocketIOClient(socketio.ClientNamespace):
   def on_connect(self):
     data = {
       'type': 4,
-      'data': 'right'
+      'data': {
+        'movement': 'left',
+        'action': 'start'
+      }
     }
     data_string = json.dumps(data)
     self.sioClient.emit('message', data_string)
