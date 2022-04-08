@@ -1,6 +1,6 @@
 import functools
 import json
-from wallE_socketio_server import SocketIOServer
+from socketio_server import SocketIOServer
 
 
 class WallECommandHandler(object):
@@ -26,7 +26,6 @@ class WallECommandHandler(object):
       print('Could not execute handle_message.', e)
       return False
 
-
   def handle_movement_command(self, data):
     try:
       movement = data['movement']
@@ -45,6 +44,7 @@ class WallECommandHandler(object):
     return decorator_move
 
 
+"""
 ch = WallECommandHandler()
 
 
@@ -68,4 +68,6 @@ def backward(action):
   print(action, 'moving backward')
 
 
-# ch.start_listening()
+ch.start_listening()
+
+"""

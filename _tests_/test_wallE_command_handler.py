@@ -1,5 +1,5 @@
 from unittest import TestCase
-from wallE_command_handler import WallECommandHandler
+from wallE_networking.command_handler import WallECommandHandler
 
 
 class TestWallECommandHandler(TestCase):
