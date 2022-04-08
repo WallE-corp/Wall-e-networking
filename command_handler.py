@@ -1,5 +1,5 @@
-import functools
 import json
+
 from socketio_server import SocketIOServer
 
 
@@ -8,7 +8,7 @@ class WallECommandHandler(object):
     self.sio_server = SocketIOServer()
     self.sio_server.delegate = self
 
-    self.command_map = {
+    self.commands = {
       4: self.handle_movement_command
     }
     self.movement_commands = {}
@@ -19,7 +19,7 @@ class WallECommandHandler(object):
   def handle_message(self, message):
     try:
       message_data = json.loads(message)
-      command = self.command_map.get(message_data['type'])
+      command = self.commands.get(message_data['type'])
       command(message_data['data'])
       return True
     except Exception as e:
@@ -40,5 +40,10 @@ class WallECommandHandler(object):
   def move(self, movement):
     def decorator_move(func):
       self.movement_commands[movement] = func
-
     return decorator_move
+
+  def command(self, command_type):
+    def decorator_command(func):
+      self.commands[command_type] = func
+    return decorator_command
+

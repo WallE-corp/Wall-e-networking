@@ -1,5 +1,5 @@
 from unittest import TestCase
-from wallE_networking.command_handler import WallECommandHandler
+from command_handler import WallECommandHandler
 
 
 class TestWallECommandHandler(TestCase):
@@ -28,3 +28,10 @@ class TestWallECommandHandler(TestCase):
       pass
 
     self.assertIn('left', self.cmdh.movement_commands)
+
+  def test_command(self):
+    @self.cmdh.command(2)
+    def set_movement_speed(data):
+      pass
+
+    self.assertIn(2, self.cmdh.commands)
