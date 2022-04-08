@@ -17,11 +17,10 @@ class WallECommandHandler(object):
     self.sio_server.run()
 
   def handle_message(self, message):
-      message_data = json.loads(message)
-      print(message_data)
-      command = self.command_map.get(message_data['type'])
-      command(message_data['data'])
-
+    message_data = json.loads(message)
+    print(message_data)
+    command = self.command_map.get(message_data['type'])
+    command(message_data['data'])
 
   def handle_movement_command(self, data):
     movement = data['movement']
@@ -32,6 +31,7 @@ class WallECommandHandler(object):
   def move(self, movement):
     def decorator_move(func):
       self.movement_commands[movement] = func
+
     return decorator_move
 
 
@@ -58,4 +58,4 @@ def backward(action):
   print(action, 'moving backward')
 
 
-ch.start_listening()
+# ch.start_listening()
