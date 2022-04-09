@@ -9,7 +9,7 @@ curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())
 parentdir = os.path.dirname(curdir)
 sys.path.insert(0, parentdir)
 
-from backend_requests import *
+from src.backend_requests import *
 
 class TestBackendRequests(TestCase):
   def setUp(self):
