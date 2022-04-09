@@ -1,7 +1,7 @@
-import wallE_networking as wen
+from command_handler import WallECommandHandler
 
 if __name__ == "__main__":
-  ch = wen.WallECommandHandler()
+  ch = WallECommandHandler()
 
 
   @ch.move('left')
