@@ -28,10 +28,10 @@ class TestBackendRequests(TestCase):
     unsynced_obstacle_events = [obstacle_event]
     
     # When
-    wasSuccessful = store_unsynced_obstacle_events()
+    was_successful = store_unsynced_obstacle_events()
 
     # Then
-    self.assertTrue(wasSuccessful)
+    self.assertTrue(was_successful)
     self.assertTrue(obstacle_event in unsynced_obstacle_events)
     with open('data/obstacle_events.pkl', 'rb') as f:
       unsynced_obstacle_events = pickle.load(f)

@@ -41,6 +41,13 @@ class ObstacleEvent:
   obstacle_image_filepath: str
   is_uploaded: bool = False
 
+  def get_dict(self):
+    return {
+      'vx': self.vx,
+      'vy': self.vy,
+      'obstacle_image_filepath': self.obstacle_image_filepath
+    }
+
   def __str__(self) -> str:
     return f'ObstacleEvent(vx={self.vx}, vy={self.vy}, obstacle_image_filepath={self.obstacle_image_filepath}, is_uploaded={self.is_uploaded})'
 
@@ -79,11 +86,22 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   obstacle_events.append(obstacle_event)
 
   # Attempt to upload event to backend
-  ## If successful, update is_uploaded to True and return True
-  ## If unsuccessful, return False
-  ### Update local storage of obstacle_events
-  unsynced_obstacle_events.append(obstacle_event)
-  store_unsynced_obstacle_events()
-
+  image_binary = open(obstacle_event.obstacle_image_filepath, 'rb').readAll()
+  request_files = {'image': image_binary}
+  request_payload = obstacle_event.get_dict()
   
+  was_successful = False
+  try:
+    response = requests.put(base_url + '/obstacle_events', files=request_files, data=request_payload)
+    if response.status_code == 201:
+      print('Successfully uploaded obstacle event to backend.')
+      was_successful = True
+  except Exception as e:
+    print(e)
+
+  if not was_successful:
+    print('Failed to upload obstacle event to backend.')
+    unsynced_obstacle_events.append(obstacle_event)
+    store_unsynced_obstacle_events()
+
   return True
