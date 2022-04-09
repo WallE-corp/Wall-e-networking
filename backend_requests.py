@@ -44,6 +44,23 @@ class ObstacleEvent:
   def __str__(self) -> str:
     return f'ObstacleEvent(vx={self.vx}, vy={self.vy}, obstacle_image_filepath={self.obstacle_image_filepath}, is_uploaded={self.is_uploaded})'
 
+def store_unsynced_obstacle_events():
+  """
+  Stores all unsynced obstacle events to a file.
+
+  Returns:
+  --------
+    Boolean on whether the unsynced obstacle events were successfully stored.
+  """
+  try:
+    with open('data/obstacle_events.pkl', 'wb') as f:
+      pickle.dump(unsynced_obstacle_events, f)
+    return True
+  except Exception as e:
+    print(e)
+    return False
+
+
 def upload_obstacle_event(obstacle_event: ObstacleEvent):
   """
   Locally stores an ObstacleEvent then attempts to upload
@@ -60,13 +77,13 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   """
   # Push event to obstacle_events list
   obstacle_events.append(obstacle_event)
-  unsynced_obstacle_events.append(obstacle_event)
-
-  # Update local storage of obstacle_events
-  with open('obstacle_events.pkl', 'wb') as f:
-    pickle.dump(unsynced_obstacle_events, f)
 
   # Attempt to upload event to backend
   ## If successful, update is_uploaded to True and return True
   ## If unsuccessful, return False
+  ### Update local storage of obstacle_events
+  unsynced_obstacle_events.append(obstacle_event)
+  store_unsynced_obstacle_events()
+
+  
   return True

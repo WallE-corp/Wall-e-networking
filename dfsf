@@ -1,0 +1,113 @@
+[33mcommit a3712ffb7610e59054fb1a6fdfb8cdd8c85a6f7d[m[33m ([m[1;36mHEAD -> [m[1;32mapi-requests[m[33m)[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Sat Apr 9 07:05:51 2022 +0200
+
+    upload_obstacle_event function now pickles unuploaded obstacle events for later tries
+
+[33mcommit bbc0d3b77d59f3c9d87511784cc7b096157eeaa5[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Sat Apr 9 06:54:58 2022 +0200
+
+    Fixed imports in _tests_
+
+[33mcommit 3396f142778efb75739a5b5fe5bd783916239d83[m[33m ([m[1;31morigin/api-requests[m[33m)[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Sat Apr 9 06:32:26 2022 +0200
+
+    Added a ping function to test the connection with wall-e-backend
+
+[33mcommit 1d999a74d0443bfa0b1b6d9de8b93423131538cb[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Sat Apr 9 05:20:04 2022 +0200
+
+    Fixed imports in example code in main.py
+
+[33mcommit 0864a84e0160b881bb72a0f2569920f3b4cf2db0[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Sat Apr 9 05:19:02 2022 +0200
+
+    Updated requirements.txt to specifcy exakt versions of packages
+
+[33mcommit f9d564b7a2a68838245eb0e840aa857c78bfeacd[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 08:18:52 2022 +0200
+
+    Fixed issue in requirements.txt
+
+[33mcommit 49e2e149c489ffcdfacd9f65a6069f5adcdc36e7[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 08:08:15 2022 +0200
+
+    Removed package as was causes issues with sys.path. Fixed issue with command decorator after failing test
+
+[33mcommit 39592f90dd14a5ecb9bc74f6d66dda4e87f98cdf[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 07:35:44 2022 +0200
+
+    Updated READMEto be more descriptive of the repository and how to use it.
+
+[33mcommit 2b87fdb970019a5bb6458face74a87c3fe41a4fe[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 07:09:20 2022 +0200
+
+    Moved example code from command_handler.py to main.py outside of the package
+
+[33mcommit 9ce79aa8b6fd9a5d5cb70b4af2f1969e67a8b606[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 07:07:54 2022 +0200
+
+    Added a requirements.txt
+
+[33mcommit 061592ba0499954f6287176610ab719b08d2a9ed[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 06:47:38 2022 +0200
+
+    Created new package folder to host all source files. Removed wallE suffix on files
+
+[33mcommit 3a70cbc245bfd672120b5013c3683b97005734bd[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 06:37:16 2022 +0200
+
+    Updated WallECommandHandler methods handle_message and handle_movement_command to print more descriptive message whenever an exception is raised. Written unit tests for both aforementioned methods
+
+[33mcommit a86503881c6bd00454d60e7a7222fbbbdbc9651b[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 06:25:40 2022 +0200
+
+    Added unit testing class for WallECommandHandler. Currently only tests that move decorator method correctly adds the descorated function to the movement_commands dictionary
+
+[33mcommit 2691b5a4e5dd6db6f663547994cd51e6d8adb537[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 06:19:02 2022 +0200
+
+    Removed Command classes. Command functions are now registered using decorators. Current only allows to register functions for movement
+
+[33mcommit dffcf39f66408701262ec57d4d4f555a76c7d449[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 05:07:09 2022 +0200
+
+    Separated commandhandler and commands into their own files
+
+[33mcommit a35a8fee37bbae49315a61881aacfd851ac62a02[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Fri Apr 8 04:59:50 2022 +0200
+
+    Large commit. WallECommandHandler class now added which uses the SocketIoServer to receive messages from client. Commands are done using polymorphism for dynamic retrieval of command execution functions
+
+[33mcommit 4303957850558847fe6dd4f67338a7845934d2b9[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Thu Apr 7 20:06:41 2022 +0200
+
+    Updated gitignore to ignore workspace.xml and tasks.xml in .idea/
+
+[33mcommit 8a2b629856c505c9fb18fd59a963cf4322493d6f[m
+Author: tifufu <dematasjoshua@hotmail.com>
+Date:   Thu Apr 7 20:03:50 2022 +0200
+
+    Simple python-socketio server setup
+
+[33mcommit 989656bc17edf60ec08d2ef6361cd047546e2aa4[m
+Author: tifye <dematasjoshua@hotmail.com>
+Date:   Thu Apr 7 19:24:46 2022 +0200
+
+    Initial commit
