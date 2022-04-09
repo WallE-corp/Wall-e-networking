@@ -1,6 +1,6 @@
 import json
 
-from socketio_server import SocketIOServer
+from src.socketio_server import SocketIOServer
 
 
 class WallECommandHandler(object):

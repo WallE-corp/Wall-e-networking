@@ -9,7 +9,7 @@ curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())
 parentdir = os.path.dirname(curdir)
 sys.path.insert(0, parentdir)
 
-from command_handler import WallECommandHandler
+from src.command_handler import WallECommandHandler
 
 class TestWallECommandHandler(TestCase):
   def setUp(self):

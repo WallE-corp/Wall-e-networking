@@ -1,4 +1,4 @@
-from command_handler import WallECommandHandler
+from src.command_handler import WallECommandHandler
 
 if __name__ == "__main__":
   ch = WallECommandHandler()
