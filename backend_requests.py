@@ -1,9 +1,11 @@
 from dataclasses import dataclass
 import requests
+import pickle
 
 base_url = 'http://127.0.0.1:3000'
 timeout = 0.1
 obstacle_events = []
+unsynced_obstacle_events = []
 
 def ping():
   """
@@ -58,8 +60,13 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   """
   # Push event to obstacle_events list
   obstacle_events.append(obstacle_event)
+  unsynced_obstacle_events.append(obstacle_event)
+
   # Update local storage of obstacle_events
+  with open('obstacle_events.pkl', 'wb') as f:
+    pickle.dump(unsynced_obstacle_events, f)
+
   # Attempt to upload event to backend
   ## If successful, update is_uploaded to True and return True
   ## If unsuccessful, return False
-  pass
+  return True
