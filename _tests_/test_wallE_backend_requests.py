@@ -21,3 +21,18 @@ class TestBackendRequests(TestCase):
     result = upload_obstacle_event(obstacle_event)
     self.assertTrue(obstacle_event in obstacle_events)
     self.assertTrue(obstacle_event in unsynced_obstacle_events)
+
+  def test_store_unsynced_obstacle_events(self):
+    # Given
+    obstacle_event = ObstacleEvent(vx=0, vy=0, obstacle_image_filepath='test.png')
+    unsynced_obstacle_events = [obstacle_event]
+    
+    # When
+    wasSuccessful = store_unsynced_obstacle_events()
+
+    # Then
+    self.assertTrue(wasSuccessful)
+    self.assertTrue(obstacle_event in unsynced_obstacle_events)
+    with open('data/obstacle_events.pkl', 'rb') as f:
+      unsynced_obstacle_events = pickle.load(f)
+      self.assertTrue(obstacle_event in unsynced_obstacle_events)
