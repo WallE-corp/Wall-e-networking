@@ -1,6 +1,15 @@
+import inspect
+from os import curdir
+import os
+import sys
+import inspect
 from unittest import TestCase
-from command_handler import WallECommandHandler
 
+curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(curdir)
+sys.path.insert(0, parentdir)
+
+from command_handler import WallECommandHandler
 
 class TestWallECommandHandler(TestCase):
   def setUp(self):
