@@ -131,3 +131,4 @@ dmypy.json
 #Project
 workspace.xml
 tasks.xml
+data/

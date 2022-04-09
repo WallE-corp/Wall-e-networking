@@ -36,3 +36,7 @@ class TestBackendRequests(TestCase):
     with open('data/obstacle_events.pkl', 'rb') as f:
       unsynced_obstacle_events = pickle.load(f)
       self.assertTrue(obstacle_event in unsynced_obstacle_events)
+
+test = TestBackendRequests()
+test.setUp()
+test.test_upload_obstacle_event()
