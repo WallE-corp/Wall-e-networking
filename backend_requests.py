@@ -86,7 +86,7 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   obstacle_events.append(obstacle_event)
 
   # Attempt to upload event to backend
-  image_binary = open(obstacle_event.obstacle_image_filepath, 'rb').readAll()
+  image_binary = open(obstacle_event.obstacle_image_filepath, 'rb').read()
   request_files = {'image': image_binary}
   request_payload = obstacle_event.get_dict()
   
