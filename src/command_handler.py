@@ -1,7 +1,10 @@
 import json
-
+from enum import IntEnum
 from src.socketio_server import SocketIOServer
 
+class Commands(IntEnum):
+  MOVEMENT = 4
+  START_CALIBRATION = 5
 
 class WallECommandHandler(object):
   def __init__(self):
@@ -9,7 +12,7 @@ class WallECommandHandler(object):
     self.sio_server.delegate = self
 
     self.commands = {
-      4: self.handle_movement_command
+      Commands.MOVEMENT: self.handle_movement_command
     }
     self.movement_commands = {}
 

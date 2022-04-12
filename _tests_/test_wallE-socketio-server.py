@@ -16,7 +16,7 @@ class SocketIOClient(socketio.ClientNamespace):
 
   def on_connect(self):
     data = {
-      'type': 4,
+      'type': 5,
       'data': {
         'movement': 'left',
         'action': 'start'
@@ -29,4 +29,5 @@ class SocketIOClient(socketio.ClientNamespace):
     print("Client disconnected")
 
 
-sioClient = SocketIOClient()
+if __name__ == '__main__':
+  sioClient = SocketIOClient()

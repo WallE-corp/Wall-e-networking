@@ -26,3 +26,7 @@ class SocketIOServer(socketio.AsyncNamespace):
       self.delegate.handle_message(message)
     return 'OK'
 
+
+if __name__ == '__main__':
+  sioServer = SocketIOServer()
+  sioServer.run()
