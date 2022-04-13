@@ -10,6 +10,7 @@ sys.path.insert(0, parentdir)
 
 from src.api.obstacle import *
 
+
 class TestBackendRequests(TestCase):
   def setUp(self):
     self.base_url = '127.0.0.1:3000'
