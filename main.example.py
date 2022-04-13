@@ -1,4 +1,6 @@
 from src.command_handler import WallECommandHandler, Commands
+import threading
+import time
 
 ch = WallECommandHandler()
 
@@ -27,6 +29,15 @@ def backward(action):
 def start_calibration(data):
   print('Starting calibration')
 
+
+def read_serial_data():
+  while True:
+    time.sleep(3)
+    print(time.ctime(time.time()))
+
+
+t = threading.Thread(target=read_serial_data)
+t.start()
 
 ch.start_listening()
 
