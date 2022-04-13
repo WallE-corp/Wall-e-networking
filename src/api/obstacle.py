@@ -64,13 +64,11 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   Locally stores an ObstacleEvent then attempts to upload
   it to the backend server.
 
-  Parameters:
-  -----------
+  Args:
   obstacle_event: ObstacleEvent
     The obstacle event to upload.
 
   Returns:
-  --------
     Boolean on whether the ObstacleEvent was successfully uploaded to the backend.
   """
   # Push event to obstacle_events list
