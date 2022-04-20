@@ -1,6 +1,7 @@
 from src.command_handler import WallECommandHandler, Commands
 import threading
 import time
+import asyncio
 
 ch = WallECommandHandler()
 
@@ -39,5 +40,7 @@ def read_serial_data():
 t = threading.Thread(target=read_serial_data)
 t.start()
 
-ch.start_listening()
+asyncio.run(ch.start_listening())
+
+
 
