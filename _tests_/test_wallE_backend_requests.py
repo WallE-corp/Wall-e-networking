@@ -1,4 +1,3 @@
-import inspect
 from os import curdir
 import os
 import sys
@@ -9,7 +8,8 @@ curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())
 parentdir = os.path.dirname(curdir)
 sys.path.insert(0, parentdir)
 
-from src.backend_requests import *
+from src.api.obstacle import *
+
 
 class TestBackendRequests(TestCase):
   def setUp(self):
@@ -34,9 +34,7 @@ class TestBackendRequests(TestCase):
     # Then
     self.assertTrue(was_successful)
     self.assertTrue(obstacle_event in unsynced_obstacle_events)
-    with open('data/obstacle_events.pkl', 'rb') as f:
-      unsynced_obstacle_events = pickle.load(f)
-      self.assertTrue(obstacle_event in unsynced_obstacle_events)
+
 
 test = TestBackendRequests()
 test.setUp()

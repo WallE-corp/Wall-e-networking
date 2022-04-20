@@ -25,4 +25,3 @@ class SocketIOServer(socketio.AsyncNamespace):
     if self.delegate is not None:
       self.delegate.handle_message(message)
     return 'OK'
-

@@ -1,24 +1,13 @@
+from src.api.backend_requests import base_url, timeout
 from dataclasses import dataclass
 import requests
 import pickle
+import os
+import inspect
 
-base_url = 'http://127.0.0.1:3000'
-timeout = 0.1
+
 obstacle_events = []
 unsynced_obstacle_events = []
-
-def ping():
-  """
-  Sends a 'ping' to the backend server and awaits a 'pong' response waiting at most
-  the set timeout.
-
-  Returns:
-    Boolean on whether a 'pong' response was received.
-  """
-  res = requests.get(base_url + '/router', timeout=timeout)
-  if (res.status_code == 200 and res.text == 'pong'):
-    return True
-  return False
 
 @dataclass
 class ObstacleEvent:
@@ -51,6 +40,7 @@ class ObstacleEvent:
   def __str__(self) -> str:
     return f'ObstacleEvent(vx={self.vx}, vy={self.vy}, obstacle_image_filepath={self.obstacle_image_filepath}, is_uploaded={self.is_uploaded})'
 
+
 def store_unsynced_obstacle_events():
   """
   Stores all unsynced obstacle events to a file.
@@ -60,7 +50,8 @@ def store_unsynced_obstacle_events():
     Boolean on whether the unsynced obstacle events were successfully stored.
   """
   try:
-    with open('data/obstacle_events.pkl', 'wb') as f:
+    curdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+    with open(curdir + '\\data\\obstacle_events.pkl', 'wb') as f:
       pickle.dump(unsynced_obstacle_events, f)
     return True
   except Exception as e:
@@ -73,23 +64,24 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
   Locally stores an ObstacleEvent then attempts to upload
   it to the backend server.
 
-  Parameters:
-  -----------
+  Args:
   obstacle_event: ObstacleEvent
     The obstacle event to upload.
 
   Returns:
-  --------
     Boolean on whether the ObstacleEvent was successfully uploaded to the backend.
   """
   # Push event to obstacle_events list
   obstacle_events.append(obstacle_event)
 
   # Attempt to upload event to backend
-  image_binary = open(obstacle_event.obstacle_image_filepath, 'rb').read()
+  image_fd = open(obstacle_event.obstacle_image_filepath, 'rb')
+  image_binary = image_fd.read()
+  image_fd.close()
+
   request_files = {'image': image_binary}
   request_payload = obstacle_event.get_dict()
-  
+
   was_successful = False
   try:
     response = requests.put(base_url + '/obstacle_events', files=request_files, data=request_payload)

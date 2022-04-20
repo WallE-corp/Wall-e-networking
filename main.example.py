@@ -1,28 +1,46 @@
-from src.command_handler import WallECommandHandler
+from src.command_handler import WallECommandHandler, Commands
+import threading
+import time
+import asyncio
 
-if __name__ == "__main__":
-  ch = WallECommandHandler()
-
-
-  @ch.move('left')
-  def left(action):
-    print(action, 'moving left')
+ch = WallECommandHandler()
 
 
-  @ch.move('right')
-  def right(action):
-    print(action, 'moving right')
+@ch.move('left')
+def left(action):
+  print(action, 'moving left')
 
 
-  @ch.move('forward')
-  def forward(action):
-    print(action, 'moving forward')
+@ch.move('right')
+def right(action):
+  print(action, 'moving right')
 
 
-  @ch.move('backward')
-  def backward(action):
-    print(action, 'moving backward')
+@ch.move('forward')
+def forward(action):
+  print(action, 'moving forward')
 
 
-  ch.start_listening()
+@ch.move('backward')
+def backward(action):
+  print(action, 'moving backward')
+
+
+@ch.command(Commands.START_CALIBRATION)
+def start_calibration(data):
+  print('Starting calibration')
+
+
+def read_serial_data():
+  while True:
+    time.sleep(3)
+    print(time.ctime(time.time()))
+
+
+t = threading.Thread(target=read_serial_data)
+t.start()
+
+asyncio.run(ch.start_listening())
+
+
 
