@@ -29,7 +29,6 @@ class SocketIOClient(socketio.AsyncClientNamespace):
     print('disconnect')
 
   def on_message(self, message):
-    print(self.delegate, message)
     if self.delegate is not None:
       self.delegate.handle_message(message)
     return 'OK'
