@@ -44,6 +44,7 @@ To begin listening for commands:
 
   ch.start_listening()
 ```
+`action` Is either equal to 'start' or 'stop' to express when the command starts/stops.
 
 ## Documentation
 _(comming soon)_
