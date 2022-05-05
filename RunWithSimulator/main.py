@@ -58,8 +58,6 @@ def backward(action):
 def start_calibration(data):
   print('Starting calibration')
 
-
-
 async def handler(socket):
   global client
   client = socket
@@ -73,7 +71,7 @@ async def handler(socket):
 
 
 async def main():
-  async with websockets.serve(handler, "localhost", 8765):
+  async with websockets.serve(handler, "0.0.0.0", 8765):
     await ch.start_listening()
 
 if __name__ == "__main__":
