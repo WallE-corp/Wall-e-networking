@@ -58,19 +58,22 @@ def backward(action):
 def start_calibration(data):
   print('Starting calibration')
 
+
 async def handler(socket):
   global client
   client = socket
   while True:
     try:
       message = await socket.recv()
-      print(message)
+      messageData = json.loads(message)
+      handle_postion_data(messageData["x"], messageData["y"])
     except websockets.ConnectionClosed:
       print("Client disconnected")
       return
 
 
 async def main():
+  start_uploading_position_data(1)
   async with websockets.serve(handler, "0.0.0.0", 8765):
     await ch.start_listening()
 

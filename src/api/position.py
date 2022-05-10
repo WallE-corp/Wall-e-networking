@@ -1,4 +1,4 @@
-from backend_requests import base_url, timeout
+from src.api.backend_requests import base_url, timeout
 import requests
 import threading
 
@@ -47,7 +47,5 @@ def start_uploading_position_data(interval):
     interval: number
       Rate in seconds at which to upload position data
   """
-  threading.Timer(interval, upload_position_data).start()
-  
-
-start_uploading_position_data(1)
+  threading.Timer(interval, start_uploading_position_data, [interval]).start()
+  upload_position_data()
