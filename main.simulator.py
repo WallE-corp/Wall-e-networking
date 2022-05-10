@@ -66,7 +66,16 @@ async def handler(socket):
     try:
       message = await socket.recv()
       messageData = json.loads(message)
-      handle_postion_data(messageData["x"], messageData["y"])
+      type = int(messageData["type"])
+
+      if type == 6:
+        print(messageData)
+        oe = ObstacleEvent(x, y, messageData["imagePath"])
+        upload_obstacle_event(oe)
+      elif type == 1:
+        handle_postion_data(messageData["x"], messageData["y"])
+
+
     except websockets.ConnectionClosed:
       print("Client disconnected")
       return

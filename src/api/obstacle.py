@@ -32,8 +32,8 @@ class ObstacleEvent:
 
   def get_dict(self):
     return {
-      'vx': self.vx,
-      'vy': self.vy,
+      'x': self.vx,
+      'y': self.vy,
       'obstacle_image_filepath': self.obstacle_image_filepath
     }
 
@@ -84,7 +84,7 @@ def upload_obstacle_event(obstacle_event: ObstacleEvent):
 
   was_successful = False
   try:
-    response = requests.put(base_url + '/obstacle_events', files=request_files, data=request_payload)
+    response = requests.put(base_url + '/obstacle/event', files=request_files, data=request_payload)
     if response.status_code == 201:
       print('Successfully uploaded obstacle event to backend.')
       was_successful = True
